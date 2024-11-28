@@ -7,7 +7,8 @@ import { NhanVienController } from './nhanvien.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([NhanVien])],
-  providers: [NhanVienRepository, NhanVienService, NhanVienController],
+  controllers: [NhanVienController],
+  providers: [NhanVienRepository, NhanVienService],
   exports: [NhanVienRepository],
 })
 export class NhanVienModule {}
