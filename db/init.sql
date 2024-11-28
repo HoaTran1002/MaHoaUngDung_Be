@@ -1,0 +1,4 @@
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'ds8O80>^)9FN';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';
+FLUSH PRIVILEGES;
