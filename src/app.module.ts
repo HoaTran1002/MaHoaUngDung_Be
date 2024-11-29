@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { NhanVienModule } from './nhanvien/nhanvien.module';
 import { LopModule } from './lop/lop.module';
+import { SinhvienModule } from './sinhvien/sinhvien.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { LopModule } from './lop/lop.module';
     AuthModule,
     NhanVienModule,
     LopModule,
+    SinhvienModule,
   ],
   controllers: [AppController],
   providers: [AppService],
