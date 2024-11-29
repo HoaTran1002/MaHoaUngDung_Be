@@ -21,7 +21,7 @@ export class CreateNhanVienDto {
 
   @IsHexadecimal()
   @IsNotEmpty()
-  readonly LUONG: Buffer; // Lương đã mã hóa bằng RSA từ client
+  readonly LUONG: string; // Lương đã mã hóa bằng RSA từ client
 
   @IsString()
   @IsNotEmpty()
@@ -29,7 +29,7 @@ export class CreateNhanVienDto {
 
   @IsHexadecimal()
   @IsNotEmpty()
-  readonly MATKHAU: Buffer; // Mật khẩu đã mã hóa SHA1 từ client
+  readonly MATKHAU: string; // Mật khẩu đã mã hóa SHA1 từ client
 
   @IsString()
   @IsNotEmpty()

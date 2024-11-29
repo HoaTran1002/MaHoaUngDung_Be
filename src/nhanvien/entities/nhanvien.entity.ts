@@ -12,13 +12,13 @@ export class NhanVien {
   EMAIL?: string; // Email (có thể null)
 
   @Column({ type: 'varbinary', length: 255, nullable: true })
-  LUONG?: Buffer; // Lương đã mã hóa RSA
+  LUONG?: string; // Lương đã mã hóa RSA
 
   @Column({ type: 'nvarchar', length: 100 })
   TENDN: string; // Tên đăng nhập
 
   @Column({ type: 'varbinary', length: 255 })
-  MATKHAU: Buffer; // Mật khẩu đã mã hóa SHA1
+  MATKHAU: string; // Mật khẩu đã mã hóa SHA1
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   PUBKEY?: string; // Khóa công khai
