@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { StudyModule } from './study/study.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { NhanVienModule } from './nhanvien/nhanvien.module';
@@ -22,7 +21,6 @@ import { BangdiemModule } from './bangdiem/bangdiem.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    StudyModule,
     AuthModule,
     NhanVienModule,
     LopModule,
