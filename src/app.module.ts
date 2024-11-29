@@ -5,6 +5,7 @@ import { StudyModule } from './study/study.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { NhanVienModule } from './nhanvien/nhanvien.module';
+import { LopModule } from './lop/lop.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { NhanVienModule } from './nhanvien/nhanvien.module';
     StudyModule,
     AuthModule,
     NhanVienModule,
+    LopModule,
   ],
   controllers: [AppController],
   providers: [AppService],
