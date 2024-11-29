@@ -9,5 +9,6 @@ import { SinhVienRepository } from './repositories/sinhvien.repository';
   imports: [TypeOrmModule.forFeature([SinhVien])],
   controllers: [SinhvienController],
   providers: [SinhvienService, SinhVienRepository],
+  exports: [SinhVienRepository, TypeOrmModule],
 })
 export class SinhvienModule {}

@@ -9,9 +9,9 @@ export class SinhVienRepository extends Repository<SinhVien> {
     super(SinhVien, dataSource.createEntityManager());
   }
 
-  async addSinhVien(SinhVien: Partial<CreateSinhVienDto>): Promise<SinhVien> {
+  async addSinhVien(sinhvien: CreateSinhVienDto): Promise<SinhVien> {
     try {
-      const newSinhVien = this.create(SinhVien);
+      const newSinhVien = this.create(sinhvien);
       return await this.save(newSinhVien);
     } catch (error) {
       throw new Error(`Lỗi khi thêm sinh viên: ${error.message}`);

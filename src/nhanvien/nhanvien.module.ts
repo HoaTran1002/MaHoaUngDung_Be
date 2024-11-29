@@ -9,6 +9,6 @@ import { NhanVienController } from './nhanvien.controller';
   imports: [TypeOrmModule.forFeature([NhanVien])],
   controllers: [NhanVienController],
   providers: [NhanVienRepository, NhanVienService],
-  exports: [NhanVienRepository],
+  exports: [NhanVienRepository, TypeOrmModule],
 })
 export class NhanVienModule {}

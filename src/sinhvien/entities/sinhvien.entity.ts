@@ -22,7 +22,7 @@ export class SinhVien {
   TENDN: string; // Tên đăng nhập (bắt buộc)
 
   @Column({ type: 'varbinary', length: 255 })
-  MATKHAU: Buffer; // Mật khẩu đã mã hóa (SHA1)
+  MATKHAU: string; // Mật khẩu đã mã hóa (SHA1)
 
   @ManyToOne(() => Lop, (lop) => lop.MALOP, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'MALOP' }) // Tham chiếu tới cột MALOP trong bảng LOP

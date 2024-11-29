@@ -37,5 +37,5 @@ export class CreateSinhVienDto {
   TENDN: string; // Tên đăng nhập
 
   @IsNotEmpty()
-  MATKHAU: Buffer; // Mật khẩu đã mã hóa
+  MATKHAU: string; // Mật khẩu đã mã hóa
 }

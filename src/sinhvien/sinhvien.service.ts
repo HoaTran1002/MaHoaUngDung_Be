@@ -8,9 +8,7 @@ import { SinhVien } from './entities/sinhvien.entity';
 export class SinhvienService {
   constructor(private readonly sinhVienRepository: SinhVienRepository) {}
 
-  async createSinhVien(
-    sinhvien: Partial<CreateSinhVienDto>,
-  ): Promise<SinhVien> {
+  async createSinhVien(sinhvien: CreateSinhVienDto): Promise<SinhVien> {
     return await this.sinhVienRepository.addSinhVien(sinhvien);
   }
 
