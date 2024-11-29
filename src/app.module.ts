@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { NhanVienModule } from './nhanvien/nhanvien.module';
 import { LopModule } from './lop/lop.module';
 import { SinhvienModule } from './sinhvien/sinhvien.module';
+import { HocphanModule } from './hocphan/hocphan.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SinhvienModule } from './sinhvien/sinhvien.module';
     NhanVienModule,
     LopModule,
     SinhvienModule,
+    HocphanModule,
   ],
   controllers: [AppController],
   providers: [AppService],
