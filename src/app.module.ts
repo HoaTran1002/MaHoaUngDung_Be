@@ -14,7 +14,7 @@ import { BangdiemModule } from './bangdiem/bangdiem.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
+      port: 3307,
       username: 'root',
       password: 'ds8O80>^)9FN',
       database: 'QLSVNhom',
