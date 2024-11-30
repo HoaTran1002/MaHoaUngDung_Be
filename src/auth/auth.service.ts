@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { NhanVien } from 'src/nhanvien/entities/nhanvien.entity';
 import { SinhVien } from 'src/sinhvien/entities/sinhvien.entity';
+import { NhanVien } from 'src/nhanvien/entities/nhanvien.entity';
 import { CreateAuthDto } from './dto/create-auth.dto';
-import * as _ from 'lodash'; // Import lodash
+import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -15,43 +15,45 @@ export class AuthService {
     private readonly nhanVienRepository: Repository<NhanVien>,
   ) {}
 
-  // Hàm đăng nhập
-  async login(createAuthDto: CreateAuthDto) {
-    const { TENDN, MATKHAU } = createAuthDto;
+  private hashPassword(password: string): Buffer {
+    return crypto.createHash('sha1').update(password).digest();
+  }
 
-    // Kiểm tra bảng SinhVien
+  private async findUserByUsername(TENDN: string) {
     const sinhVien = await this.sinhVienRepository.findOne({
       where: { TENDN },
     });
-
-    if (sinhVien) {
-      const dbPassword = sinhVien.MATKHAU;
-
-      const clientHashedPassword = Buffer.from(MATKHAU, 'hex');
-
-      if (!_.isEqual(dbPassword, clientHashedPassword)) {
-        throw new UnauthorizedException('Mật khẩu không chính xác');
-      }
-
-      return { user: 'SinhVien', data: sinhVien };
-    }
+    if (sinhVien) return { user: 'SinhVien', data: sinhVien };
 
     const nhanVien = await this.nhanVienRepository.findOne({
       where: { TENDN },
     });
+    if (nhanVien) return { user: 'NhanVien', data: nhanVien };
 
-    if (nhanVien) {
-      const dbPassword = nhanVien.MATKHAU;
+    return null;
+  }
 
-      const clientHashedPassword = Buffer.from(MATKHAU);
+  async login(createAuthDto: CreateAuthDto) {
+    const { TENDN, MATKHAU } = createAuthDto;
 
-      if (!_.isEqual(dbPassword, clientHashedPassword)) {
-        throw new UnauthorizedException('Mật khẩu không chính xác');
-      }
-
-      return { user: 'NhanVien', data: nhanVien };
+    const user = await this.findUserByUsername(TENDN);
+    if (!user) {
+      throw new UnauthorizedException('Tên đăng nhập không tồn tại');
     }
 
-    throw new UnauthorizedException('Tên đăng nhập không tồn tại');
+    const { user: userType, data } = user;
+
+    const clientHashedPassword = this.hashPassword(MATKHAU);
+
+    if (
+      !(
+        Buffer.from(data.MATKHAU, 'hex').toString('utf-8') ===
+        clientHashedPassword.toString('utf-8')
+      )
+    ) {
+      throw new UnauthorizedException('Mật khẩu không chính xác');
+    }
+
+    return { user: userType, data };
   }
 }
